@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Reminder 💙</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: #edf5ff;
+    color: #24466b;
+    overflow-x: hidden;
+}
+
+/* Background decoration */
+body::before {
+    content: "";
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    background: #c9e3ff;
+    border-radius: 50%;
+    filter: blur(100px);
+    top: -100px;
+    left: -100px;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: #b8d6fa;
+    border-radius: 50%;
+    filter: blur(100px);
+    bottom: -100px;
+    right: -100px;
+    z-index: -1;
+}
+
+.container {
+    max-width: 650px;
+    margin: auto;
+    padding: 35px 22px 80px;
+}
+
+/* Header */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.top-label {
+    background: white;
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #6796c7;
+    margin-bottom: 25px;
+    box-shadow: 0 5px 20px #b9d4ef50;
+}
+
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 9vw, 65px);
+    color: #234b78;
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: #79aee4;
+    font-style: italic;
+}
+
+.hero p {
+    color: #7893af;
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 330px;
+}
+
+.scroll-hint {
+    margin-top: 65px;
+    font-size: 12px;
+    color: #8ba9c8;
+    animation: float 2s infinite ease-in-out;
+}
+
+.scroll-hint span {
+    display: block;
+    font-size: 23px;
+    margin-top: 8px;
+}
+
+/* Cards */
+.section-title {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #8aa9c9;
+    margin-bottom: 28px;
+}
+
+.card {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #ffffff;
+    padding: 30px;
+    border-radius: 24px;
+    margin-bottom: 22px;
+    box-shadow: 0 12px 35px #9cbfe522;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::after {
+    content: "✦";
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 22px;
+    color: #d1e5fb;
+}
+
+.card-number {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #8bb4dd;
+    margin-bottom: 17px;
+    font-weight: 700;
+}
+
+.card h2 {
+    font-family: 'Playfair Display', serif;
+    color: #315b87;
+    font-size: 26px;
+    margin-bottom: 13px;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #7890a9;
+}
+
+.emoji {
+    font-size: 30px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+/* Special blue card */
+.card.dark {
+    background: linear-gradient(135deg, #477fb5, #234d7b);
+    border: none;
+}
+
+.card.dark h2,
+.card.dark .card-number {
+    color: white;
+}
+
+.card.dark p {
+    color: #e0edfa;
+}
+
+.card.dark::after {
+    color: #83acd4;
+}
+
+/* Quote */
+.quote {
+    text-align: center;
+    padding: 40px 25px;
+    margin: 25px 0;
+}
+
+.quote h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    line-height: 1.6;
+    color: #4675a4;
+    font-style: italic;
+}
+
+.quote p {
+    margin-top: 15px;
+    color: #9ab1c9;
+    font-size: 12px;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 50px 10px 20px;
+}
+
+.footer .heart {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.footer h2 {
+    font-family: 'Playfair Display', serif;
+    color: #4675a4;
+    font-size: 27px;
+    margin-bottom: 12px;
+}
+
+.footer p {
+    color: #91a9c1;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Animation */
+.hidden {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(9px); }
+}
+
+@media(max-width: 480px) {
+    .container {
+        padding: 25px 17px 60px;
+    }
+
+    .card {
+        padding: 25px;
+        border-radius: 20px;
+    }
+
+    .card h2 {
+        font-size: 23px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="top-label">A LITTLE SOMETHING FOR YOU ✦</div>
+
+        <h1>Hi, <span>Dika</span></h1>
+
+        <p>
+            Just a little corner of the internet
+            to remind you that you're doing great.
+            So, take a moment and read this. 💙
+        </p>
+
+        <div class="scroll-hint">
+            A little scroll, please
+            <span>↓</span>
+        </div>
+    </section>
+
+    <!-- CARDS -->
+    <div class="section-title hidden">
+        ✦ JUST A FEW REMINDERS ✦
+    </div>
+
+    <div class="card hidden">
+        <span class="emoji">☀️</span>
+        <div class="card-number">01 — GOOD AFTERNOON</div>
+        <h2>Another day, another chance.</h2>
+        <p>
+            Whatever today brings, I hope you get
+            through it with a calm mind and a happy heart.
+            Don't forget to enjoy the little things, okay?
+        </p>
+    </div>
+
+    <div class="card dark hidden">
+        <span class="emoji">💙</span>
+        <div class="card-number">02 — YOU GOT THIS!</div>
+        <h2>I'm rooting for you.</h2>
+        <p>
+            Whatever you're working on right now,
+            I hope things go smoothly.
+            May your efforts bring you good results.
+            Good luck with everything!
+        </p>
+    </div>
+
+    <div class="card hidden">
+        <span class="emoji">🧸</span>
+        <div class="card-number">04 — DON'T FORGET</div>
+        <h2>Take care of yourself, too.</h2>
+        <p>
+            Drink enough water, eat properly,
+            and take a little break when you need one.
+            You deserve some rest after all that hard work.
+        </p>
+    </div>
+
+    <div class="card hidden">
+        <span class="emoji">🌷</span>
+        <div class="card-number">05 — ONE LAST THING</div>
+        <h2>Keep being you.</h2>
+        <p>
+            I hope you never forget how much potential
+            you have. Keep learning, keep growing,
+            and keep doing your thing.
+            You're doing better than you think.
+        </p>
+    </div>
+
+    <!-- QUOTE -->
+    <div class="quote hidden">
+        <h2>
+            "Maaf kalo lebay wkwk
+            Just want to make a cute things."
+        </h2>
+        <p>— a little thought for you</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer hidden">
+        <div class="heart">🩵</div>
+        <h2>Have a lovely day!</h2>
+        <p>
+            That's all for now.<br>
+            Don't forget to smile today.
+            <br><br>
+            Made with a little bit of care from Jerry hehe ✦
+        </p>
+    </div>
+
+</div>
+
+<script>
+// Fade in ketika card masuk layar
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+            observer.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.15
+});
+
+document.querySelectorAll('.hidden').forEach(element => {
+    observer.observe(element);
+});
+</script>
+
+</body>
+</html>
